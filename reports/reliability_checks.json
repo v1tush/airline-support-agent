@@ -1,0 +1,64 @@
+{
+  "captured_at_utc": "2026-11-23T21:43:24.779792+00:00",
+  "command": "python -m pytest -q -s tests/test_homework_reliability.py tests/test_homework_injection.py",
+  "exit_code": 0,
+  "summary": "9 passed in 1.48s",
+  "results": [
+    {
+      "check": "CACHE_MONITOR",
+      "inner_calls": 4,
+      "cache_hits": 1,
+      "cache_misses": 4,
+      "monitor_entries": 4,
+      "known_cost_rub": 1.4
+    },
+    {
+      "check": "FAILED_CACHE",
+      "network_attempts": 2,
+      "length_attempts": 2
+    },
+    {
+      "check": "BUDGET",
+      "limit_rub": 0.3,
+      "cost_after_first_call_rub": 0.35,
+      "inner_calls": 1,
+      "failed_call_cost_rub": null,
+      "unknown_usage_calls": 1
+    },
+    {
+      "check": "CHAT_FAILURE",
+      "response": "Запрос не завершён: ConnectionError: сеть недоступна\nИзвестный расход, ₽: 0 ; операций с неизвестным расходом: 1"
+    },
+    {
+      "check": "CHAT_FAILURE",
+      "response": "Запрос не завершён: ValueError: Незавершённый ответ: length\nИзвестный расход, ₽: 0.35 ; операций с неизвестным расходом: 0"
+    },
+    {
+      "check": "CHAT_BUDGET",
+      "response": "Алиса: Первый ответ\nЗапрос не завершён: BudgetExceededError: Расход неизвестен или достигнут бюджет; проверьте отчёт перед новой сессией\nИзвестный расход, ₽: 0.35 ; операций с неизвестным расходом: 0",
+      "inner_calls": 1
+    },
+    {
+      "check": "STEP_LIMIT",
+      "app_calls": 2,
+      "user_text": "Не удалось получить ответ за отведённое число шагов."
+    },
+    {
+      "check": "INJECTION",
+      "blocked_source": "pobeda#2",
+      "agent_tool_result": "ОШИБКА: Не удалось выполнить инструмент: Заблокирован подозрительный источник: pobeda#2",
+      "agent_user_text": "Не удалось получить надёжный ответ по этому вопросу.",
+      "mcp_is_error": true,
+      "normal_sources": [
+        "s7#1",
+        "s7#4"
+      ]
+    },
+    {
+      "check": "PARAPHRASE",
+      "source": "pobeda#2",
+      "pattern_detected": false,
+      "mcp_is_error": false
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "generated_at_utc": "2026-11-23T22:36:00.320464+00:00",
+  "source_report": "reports/first_holdout.json",
+  "source_sha256": "a16c21cbb8990df54fd89991b2c757834b33b194bd587763da7249bbfbfada89",
+  "evaluated_head": "a9efe141c84149990a65de7520f375b91862bf64",
+  "code_and_dataset_commit": "2e7bbbd3d943a9c4b836020b6101910a0bcf9d14",
+  "preflight_timestamp_note": "updated_before_first_run_at_utc marks an earlier metadata revision; resolved_at_utc marks final model URI resolution before the first network call",
+  "result_scope": "Independent first holdout on evaluated_head; subsequent code changes were not part of this score",
+  "post_run_changes": [
+    "Windows CLI output now escapes characters unsupported by the console encoding",
+    "Model guard now classifies retrieved rule chunks separately for exact source IDs"
+  ],
+  "scenarios": 20,
+  "scenarios_passed": 15,
+  "turns": 23,
+  "turns_passed": 18,
+  "turn_pass_rate": 0.782608695652174,
+  "statuses": {
+    "completed": 23
+  },
+  "judge_verdicts": {
+    "incorrect": 4,
+    "correct": 19
+  },
+  "tool_checks_passed": 22,
+  "failed_turn_ids": [
+    "h01",
+    "h12",
+    "h15.2",
+    "h16.2",
+    "h20"
+  ],
+  "example_pass": "h02",
+  "example_fail": "h15.2",
+  "sensitive_pattern_match_counts": {
+    "email_addresses": 0,
+    "api_key_assignments": 0,
+    "private_keys": 0,
+    "bearer_tokens": 0
+  }
+}

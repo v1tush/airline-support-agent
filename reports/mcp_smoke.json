@@ -1,0 +1,27 @@
+{
+  "captured_at_utc": "2026-11-23T21:19:33.271454+00:00",
+  "command": "python check_mcp.py",
+  "protocol": "2025-11-25",
+  "tools": [
+    "search_flights",
+    "search_airline_rules"
+  ],
+  "valid_request": {
+    "from_city": "MOW",
+    "to_city": "AER",
+    "dates": [
+      "2026-07-23"
+    ]
+  },
+  "valid_is_error": false,
+  "candidates_count": 7,
+  "top3_ids": [
+    "F006",
+    "F001",
+    "F005"
+  ],
+  "invalid_request": {
+    "to_city": "AER"
+  },
+  "invalid_is_error": true
+}
