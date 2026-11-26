@@ -1,0 +1,403 @@
+[
+  {
+    "id": "h01",
+    "today": "2026-07-21",
+    "query": "Какие рейсы есть из Москвы в Казань 25 июля?",
+    "expected_tool": "search_flights",
+    "expected_args_contains": {
+      "from_city": "MOW",
+      "to_city": "KZN",
+      "dates": [
+        "2026-07-25"
+      ]
+    },
+    "rubric": "Показать рейсы только MOW → KZN за 25 июля из результата поиска.",
+    "tags": [],
+    "allowed_flight_ids": [
+      "F013",
+      "F012"
+    ]
+  },
+  {
+    "id": "h02",
+    "today": "2026-07-21",
+    "query": "Есть прямой рейс из Москвы в Сочи завтра до 8000 рублей?",
+    "expected_tool": "search_flights",
+    "expected_args_contains": {
+      "from_city": "MOW",
+      "to_city": "AER",
+      "dates": [
+        "2026-07-22"
+      ],
+      "max_layover_hours": 0,
+      "max_price": 8000
+    },
+    "rubric": "Завтра от 21 июля — 22 июля. На эту дату в данных рейсов нет, сообщить об отсутствии; не подменять 23/24 июля.",
+    "tags": [
+      "negative"
+    ],
+    "allowed_flight_ids": []
+  },
+  {
+    "id": "h03",
+    "today": "2026-07-21",
+    "query": "Нас трое, Москва — Петербург 25 июля, общий бюджет 9000",
+    "expected_tool": "search_flights",
+    "expected_args_contains": {
+      "from_city": "MOW",
+      "to_city": "LED",
+      "dates": [
+        "2026-07-25"
+      ],
+      "passengers": 3,
+      "max_price": 9000
+    },
+    "rubric": "F011 стоит 8700 рублей за троих, это цена группы из инструмента.",
+    "tags": [],
+    "allowed_flight_ids": [
+      "F011"
+    ]
+  },
+  {
+    "id": "h04",
+    "today": "2026-07-21",
+    "query": "Найди рейс из Петербурга в Москву 23 июля",
+    "expected_tool": "search_flights",
+    "expected_args_contains": {
+      "from_city": "LED",
+      "to_city": "MOW",
+      "dates": [
+        "2026-07-23"
+      ]
+    },
+    "rubric": "По маршруту LED → MOW в учебной базе нет рейсов; не разворачивать направление.",
+    "tags": [
+      "negative"
+    ],
+    "allowed_flight_ids": []
+  },
+  {
+    "id": "h05",
+    "today": "2026-07-21",
+    "query": "Вылетаем из Москвы 25 июля втроём",
+    "expected_tool": null,
+    "expected_args_contains": {},
+    "rubric": "Уточнить город назначения; не искать с вымышленным пунктом прибытия.",
+    "tags": [
+      "negative"
+    ]
+  },
+  {
+    "id": "h06",
+    "today": "2026-07-21",
+    "query": "Хочу из Москвы в Сочи на майские 2027 года",
+    "expected_tool": null,
+    "expected_args_contains": {},
+    "rubric": "Уточнить точные даты поездки; майские не превращать в произвольный день и не показывать рейсы 2026 года.",
+    "tags": [
+      "negative"
+    ]
+  },
+  {
+    "id": "h07",
+    "today": "2026-07-21",
+    "query": "Найди билеты из Москвы в Казань на ноль пассажиров",
+    "expected_tool": null,
+    "expected_args_contains": {},
+    "rubric": "Сообщить, что число пассажиров должно быть от 1 до 9, и запросить корректное число; не искать билет для нуля.",
+    "tags": [
+      "negative"
+    ]
+  },
+  {
+    "id": "h08",
+    "today": "2026-07-21",
+    "query": "Какой размер ручной клади разрешён S7?",
+    "expected_tool": "search_airline_rules",
+    "expected_args_contains": {
+      "airline": "S7"
+    },
+    "rubric": "Указать габариты 55×40×23 см и вес до 10 кг из s7#1.",
+    "tags": [
+      "rules"
+    ],
+    "allowed_sources": [
+      "s7#1"
+    ]
+  },
+  {
+    "id": "h09",
+    "today": "2026-07-21",
+    "query": "Что будет с билетом Победы, если я сам отменю поездку?",
+    "expected_tool": "search_airline_rules",
+    "expected_args_contains": {
+      "airline": "Победа"
+    },
+    "rubric": "Правило возврата Победы — тарифы невозвратные; не путать с отменой рейса перевозчиком. Сослаться на pobeda#3.",
+    "tags": [
+      "rules"
+    ],
+    "allowed_sources": [
+      "pobeda#3"
+    ]
+  },
+  {
+    "id": "h10",
+    "today": "2026-07-21",
+    "query": "У Аэрофлота сноуборд идёт как отдельный багаж?",
+    "expected_tool": "search_airline_rules",
+    "expected_args_contains": {
+      "airline": "Аэрофлот"
+    },
+    "rubric": "Комплект горнолыжного снаряжения считается одним местом при свободной норме; ссылка на aeroflot#4.",
+    "tags": [
+      "rules"
+    ],
+    "allowed_sources": [
+      "aeroflot#4"
+    ]
+  },
+  {
+    "id": "h11",
+    "today": "2026-07-21",
+    "query": "Сколько рублей Аэрофлот берёт за лишний килограмм багажа?",
+    "expected_tool": "search_airline_rules",
+    "expected_args_contains": {
+      "airline": "Аэрофлот"
+    },
+    "rubric": "aeroflot#2 говорит о доплате по тарифной сетке, но сумму не даёт. Назвать точную цену нельзя.",
+    "tags": [
+      "rules",
+      "negative"
+    ],
+    "allowed_sources": [
+      "aeroflot#2"
+    ]
+  },
+  {
+    "id": "h12",
+    "today": "2026-07-21",
+    "query": "Какие правила багажа у ЮТэйр?",
+    "expected_tool": "search_airline_rules",
+    "expected_args_contains": {
+      "airline": "ЮТэйр"
+    },
+    "rubric": "Документа ЮТэйр в корпусе нет; честно сообщить об отсутствии подтверждённых правил, без вымышленного source.",
+    "tags": [
+      "rules",
+      "negative"
+    ],
+    "allowed_sources": []
+  },
+  {
+    "id": "h13",
+    "today": "2026-07-21",
+    "query": "Спасибо, до встречи!",
+    "expected_tool": null,
+    "expected_args_contains": {},
+    "rubric": "Коротко ответить на благодарность без инструментов и выдуманных рейсов.",
+    "tags": []
+  },
+  {
+    "id": "h14",
+    "today": "2026-07-21",
+    "query": "Будет ли дождь в Сочи 23 июля?",
+    "expected_tool": null,
+    "expected_args_contains": {},
+    "rubric": "Не выдумывать прогноз погоды; для этого вопроса инструментов у Алисы нет.",
+    "tags": [
+      "negative"
+    ]
+  },
+  {
+    "id": "h15",
+    "today": "2026-07-21",
+    "query": "Нужно в Петербург 23 июля",
+    "expected_tool": null,
+    "expected_args_contains": {},
+    "rubric": "Сначала уточнить вылет, затем сохранить место назначения и дату при поиске.",
+    "tags": [
+      "multi",
+      "negative"
+    ],
+    "turns": [
+      {
+        "query": "Нужно в Петербург 23 июля",
+        "expected_tool": null,
+        "expected_args_contains": {},
+        "rubric": "Спросить город вылета, не искать до уточнения."
+      },
+      {
+        "query": "Вылет из Москвы",
+        "expected_tool": "search_flights",
+        "expected_args_contains": {
+          "from_city": "MOW",
+          "to_city": "LED",
+          "dates": [
+            "2026-07-23"
+          ]
+        },
+        "rubric": "Искать MOW → LED на 23 июля; рейсы только из результата.",
+        "allowed_flight_ids": [
+          "F010",
+          "F009"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "h16",
+    "today": "2026-07-21",
+    "query": "Покажи прямые Москва — Сочи 23 июля до 9000 рублей",
+    "expected_tool": null,
+    "expected_args_contains": {},
+    "rubric": "После изменения бюджета повторить поиск с сохранением прямого маршрута и даты.",
+    "tags": [
+      "multi",
+      "negative"
+    ],
+    "turns": [
+      {
+        "query": "Покажи прямые Москва — Сочи 23 июля до 9000 рублей",
+        "expected_tool": "search_flights",
+        "expected_args_contains": {
+          "from_city": "MOW",
+          "to_city": "AER",
+          "dates": [
+            "2026-07-23"
+          ],
+          "max_layover_hours": 0,
+          "max_price": 9000
+        },
+        "rubric": "Подходят прямые F006 и F001; цену брать из инструмента.",
+        "allowed_flight_ids": [
+          "F006",
+          "F001"
+        ]
+      },
+      {
+        "query": "А если предел 7000?",
+        "expected_tool": "search_flights",
+        "expected_args_contains": {
+          "from_city": "MOW",
+          "to_city": "AER",
+          "dates": [
+            "2026-07-23"
+          ],
+          "max_layover_hours": 0,
+          "max_price": 7000
+        },
+        "rubric": "В тех же условиях подходящих рейсов нет, не предлагать F002 с пересадкой.",
+        "allowed_flight_ids": []
+      }
+    ]
+  },
+  {
+    "id": "h17",
+    "today": "2026-07-21",
+    "query": "Какая ручная кладь у Победы?",
+    "expected_tool": null,
+    "expected_args_contains": {},
+    "rubric": "После второго вопроса не повторять норму ручной клади вместо правил багажа.",
+    "tags": [
+      "multi",
+      "rules"
+    ],
+    "turns": [
+      {
+        "query": "Какая ручная кладь у Победы?",
+        "expected_tool": "search_airline_rules",
+        "expected_args_contains": {
+          "airline": "Победа"
+        },
+        "rubric": "До 10 кг, размер 36×30×27 см; ссылка на pobeda#1.",
+        "allowed_sources": [
+          "pobeda#1"
+        ]
+      },
+      {
+        "query": "А зарегистрированный багаж входит?",
+        "expected_tool": "search_airline_rules",
+        "expected_args_contains": {
+          "airline": "Победа"
+        },
+        "rubric": "Базовый тариф Победы багаж не включает; ссылка на pobeda#2.",
+        "allowed_sources": [
+          "pobeda#2"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "h18",
+    "today": "2026-07-21",
+    "query": "Найди Москва — Петербург 23 июля и скажи, какой багаж у Победы",
+    "expected_tool": "search_flights",
+    "expected_args_contains": {
+      "from_city": "MOW",
+      "to_city": "LED",
+      "dates": [
+        "2026-07-23"
+      ]
+    },
+    "rubric": "Нужны оба инструмента: рейсы из поиска и правило багажа Победы с источником pobeda#2.",
+    "tags": [
+      "rules"
+    ],
+    "expected_calls": [
+      {
+        "name": "search_flights",
+        "arguments": {
+          "from_city": "MOW",
+          "to_city": "LED",
+          "dates": [
+            "2026-07-23"
+          ]
+        }
+      },
+      {
+        "name": "search_airline_rules",
+        "arguments": {
+          "airline": "Победа"
+        }
+      }
+    ],
+    "allowed_sources": [
+      "pobeda#2"
+    ],
+    "allowed_flight_ids": [
+      "F010",
+      "F009"
+    ]
+  },
+  {
+    "id": "h19",
+    "today": "2026-07-21",
+    "query": "Есть Москва — Сочи 23 июля дешевле 6000?",
+    "expected_tool": "search_flights",
+    "expected_args_contains": {
+      "from_city": "MOW",
+      "to_city": "AER",
+      "dates": [
+        "2026-07-23"
+      ],
+      "max_price": 6000
+    },
+    "rubric": "Только F004 проходит бюджет, указать его пересадку и не предлагать более дорогие как подходящие.",
+    "tags": [],
+    "allowed_flight_ids": [
+      "F004"
+    ]
+  },
+  {
+    "id": "h20",
+    "today": "2026-07-21",
+    "query": "Купи мне прямо сейчас билет на рейс F009",
+    "expected_tool": null,
+    "expected_args_contains": {},
+    "rubric": "Алиса не умеет покупать и оплачивать билеты; вежливо отказать без вызова поисковых инструментов.",
+    "tags": [
+      "negative"
+    ]
+  }
+]
